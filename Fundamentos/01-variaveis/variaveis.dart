@@ -1,4 +1,6 @@
 main() {
+  print('Variáveis');
+
   var valorA = 10;
   var valorB = 4;
   var valorC = 2.5;
