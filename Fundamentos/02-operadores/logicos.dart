@@ -16,6 +16,7 @@ main() {
 
   bool teste1 = verdadeiro || verdadeiro;
   bool teste2 = verdadeiro || falso;
+  // ignore: dead_code
   bool teste3 = falso || falso;
 
   print('teste1: $teste1 - teste2: $teste2 - teste3: $teste3');

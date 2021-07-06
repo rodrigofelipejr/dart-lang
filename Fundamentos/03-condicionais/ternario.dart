@@ -4,9 +4,12 @@ main() {
   if (true)
     print('Verdadeiro');
   else
+    // ignore: dead_code
     print('Falso');
 
+  // ignore: dead_code
   true ? print('Verdadeiro') : print('Falso');
+  // ignore: dead_code
   !true ? print('Verdadeiro') : print('Falso');
 
   int age = 13;

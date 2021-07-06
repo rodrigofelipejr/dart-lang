@@ -3,11 +3,13 @@ main() {
 
   if (true) {
     print('Verdadeiro');
+  // ignore: dead_code
   } else {
     print('Falso');
   }
 
   if (!true)
+    // ignore: dead_code
     print('Falso');
   else
     print('Verdadeiro');
