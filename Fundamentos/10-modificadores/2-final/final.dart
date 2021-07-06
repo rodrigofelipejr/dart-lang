@@ -26,7 +26,7 @@ main() {
 
   var pessoa = Pessoa('Rodrigo', ['Felipe', 'Junior']);
   pessoa.nome = 'Rodrigo Felipe';
-  // pessoa.familiares = []; //NOTE - ERROR => final
+  // pessoa.familiares = []; //NOTE - ERROR => 'familiares' can't be used as a setter because it's final.
 
   print('Nome: ${pessoa.nome} - Familiares: ${pessoa.familiares}');
 }
