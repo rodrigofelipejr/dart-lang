@@ -36,6 +36,8 @@ main() {
   var s1 = Service.instance;
   var s2 = Service.instance;
 
+  print('identical: ${identical(s1, s2)}');
+
   s1.tag = 'TagB';
   print(Service.instance.tag);
 
