@@ -1,5 +1,3 @@
-import 'dart:math';
-
 class PessoaFactory {
   static final PessoaFactory instancia = PessoaFactory._construtorNomeado('indefinido');
   String? nome;
