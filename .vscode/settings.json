@@ -3,12 +3,14 @@
     "Calculos",
     "Cidadao",
     "Dinamico",
+    "Elegivel",
     "Estatico",
     "Mamiferos",
     "Usuario",
     "acao",
     "alteracao",
     "condicoes",
+    "declaracao",
     "docil",
     "funcao",
     "indice",
@@ -17,6 +19,7 @@
     "numeros",
     "operacao",
     "presidenciavel",
+    "prestacao",
     "variavel"
   ]
 }
