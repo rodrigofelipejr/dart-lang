@@ -72,7 +72,7 @@ listForEach() {
 }
 
 /**
- * Conceito
+ * Conceito - Expand
  * - Cria uma nova lista expandido ou concatenando os elementos 
  */
 
@@ -97,9 +97,39 @@ listExpand() {
   print(listaDinamica = [0, ...inteiros, 15]); //NOTE - operador spread (espalhar)
   print(listaDinamica = [...[], ...inteiros, if (doubles is List<double>) ...doubles]);
   print(listaDuplicada = [...[], for (var numero in numeros) numero]);
+  print('');
+}
+
+/**
+ * Conceito - Map
+ * - Transforma/seleciona os elementos de uma coleção criando uma nova do mesmo tamanho!
+ */
+
+listMap() {
+  print('List Map\n');
+
+  List<String> frutas = ['Morango', 'Banana', 'Tomate'];
+  List<String> frutasMapeadas = frutas.map((e) => '$e é uma fruta').toList();
+  print(frutasMapeadas);
+
+  List<int> inteiros = [1, 5, 10];
+  var incrementar = (int e) => ++e; //NOTE - e++
+  final dobrar = (int e) => e * 2;
+
+  List<int> inteirosMapeados = inteiros.map(incrementar).map(dobrar).toList();
+  print(inteirosMapeados);
+
+  List<double> doubles = [2.75, 5.5, 7.25];
+  final triplo = (double e) => e * 3;
+  final Function moeda = (dynamic e) => 'R\$ ${e.toDouble().toStringAsFixed(2).replaceFirst('.', ',')}';
+  Function porcentagem(double desconto) => (double valor) => desconto * valor; //NOTE - closure
+  // final porcentagem = (double valor) => 0.9 * valor; //NOTE - closure
+  List<dynamic> doublesMapeados = doubles.map(triplo).map((e) => porcentagem(0.9)(e)).map((e) => moeda(e)).toList();
+  print(doublesMapeados);
 }
 
 main() {
   listForEach();
   listExpand();
+  listMap();
 }
