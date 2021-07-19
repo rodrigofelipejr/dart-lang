@@ -126,10 +126,30 @@ listMap() {
   // final porcentagem = (double valor) => 0.9 * valor; //NOTE - closure
   List<dynamic> doublesMapeados = doubles.map(triplo).map((e) => porcentagem(0.9)(e)).map((e) => moeda(e)).toList();
   print(doublesMapeados);
+  print('');
+}
+
+/**
+ * Conceito - Every
+ * - Faz o teste em todos elementos da lista com operado lógico && retornando (true ou false)
+ * - Todos os item da lista devem atender a condição para TRUE
+ */
+
+listEvery() {
+  print('List - Every\n');
+
+  List<int> inteiros = [0, 1, 2, 3, 4, 5];
+  bool resultado = inteiros.every((e) => e >= 0);
+  print(resultado);
+
+  List<String> textos = List.from(['Rodrigo', 'Felipe', 'João']);
+  resultado = textos.every((e) => e.contains('e'));
+  print(resultado);
 }
 
 main() {
   listForEach();
   listExpand();
   listMap();
+  listEvery();
 }
