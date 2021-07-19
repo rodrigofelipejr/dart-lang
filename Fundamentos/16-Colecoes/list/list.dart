@@ -145,6 +145,26 @@ listEvery() {
   List<String> textos = List.from(['Rodrigo', 'Felipe', 'João']);
   resultado = textos.every((e) => e.contains('e'));
   print(resultado);
+  print('');
+}
+
+/**
+ * Conceito - Where
+ * - Filtra os elementos de uma coleção criando uma nova do mesmo tamanho ou menor
+ */
+
+listWhere() {
+  print('List - Where\n');
+
+  List<int> idades = [36, 12, 18, 31, 17, 23];
+  print(idades.where((e) => e is int)); //NOTE - retorno em Iterable
+  print(idades.where((e) => e is int).toList()); //NOTE - retorno em List
+  print(idades.whereType<int>());
+  List<int> adultos = idades.where((e) => e > 17).toList();
+  var crianca = idades.singleWhere((e) => e < 12, orElse: () => 0);
+  //NOTE - orElse => evita erros caso a condição não seja atendida
+  int menor = idades.lastWhere((e) => e.toString().startsWith('0'), orElse: () => 0);
+  print('Adultos: $adultos - Criança: $crianca - Menor: $menor');
 }
 
 main() {
@@ -152,4 +172,5 @@ main() {
   listExpand();
   listMap();
   listEvery();
+  listWhere();
 }
