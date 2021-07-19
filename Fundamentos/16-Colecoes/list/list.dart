@@ -71,6 +71,35 @@ listForEach() {
   print('listaPreenchida: $listaPreenchida\nlistaGerada: $listaGerada\nlistaPrecos: $listaPrecos\n');
 }
 
+/**
+ * Conceito
+ * - Cria uma nova lista expandido ou concatenando os elementos 
+ */
+
+listExpand() {
+  print('List Expand\n');
+
+  var lista = [
+    [1, 2],
+    [3, 4]
+  ];
+
+  List<dynamic> listaFlat = lista.expand((e) => e).toList();
+  List<dynamic> listaDuplicada = listaFlat.expand((e) => [e, e]).toList();
+  List<num> numeros = [1, 1.25, 5, 7.25, 10];
+  List<int> inteiros = [1, 5, 10];
+  List<double> doubles = [2.5, 7.25];
+  print('listaFlat: $listaFlat \nlistaDuplicada: $listaDuplicada\n');
+
+  List<dynamic> listaDinamica = [];
+  print(listaDinamica + [1, 5, 10] + [2, 7]);
+  print(listaDinamica = []..addAll(inteiros)..addAll(doubles));
+  print(listaDinamica = [0, ...inteiros, 15]); //NOTE - operador spread (espalhar)
+  print(listaDinamica = [...[], ...inteiros, if (doubles is List<double>) ...doubles]);
+  print(listaDuplicada = [...[], for (var numero in numeros) numero]);
+}
+
 main() {
   listForEach();
+  listExpand();
 }
