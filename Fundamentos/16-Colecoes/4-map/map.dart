@@ -1,5 +1,3 @@
-import 'dart:math';
-
 /**
  * Conceito - Map
  * - o Map é uma coleção dinamica e customizável de chaves e valores entre {}
@@ -124,9 +122,33 @@ mapMap() {
   print('Media as notas: ${averageGrade.toStringAsFixed(1)}\n');
 
   studentsSchool.forEach((e) => print('${e['name']}: ${e['grade']}'));
+  print('');
+}
+
+/**
+ * Conceito - Every
+ * - Every realiza o teste em 'todos' os elementos com o operador lógico && retornando (true ou false)
+ */
+
+everyMap() {
+  print('Map - Every\n');
+
+  List<Map<String, dynamic>> people = [
+    {'name': 'Leandro', 'age': 60},
+    {'name': 'Lucas', 'age': 33},
+    {'name': 'Lucio', 'age': 17}
+  ];
+
+  print(people.every((e) => e.containsKey('name')));
+  print(people.every((e) => e['age'] >= 17));
+  print(people.every((e) => e['age'] > 17));
+
+  bool maiores = people.every((e) => e['name']!.toString().startsWith('L'));
+  print(maiores);
 }
 
 main() {
   linkedHashMap();
   mapMap();
+  everyMap();
 }
