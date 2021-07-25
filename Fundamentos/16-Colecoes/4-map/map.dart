@@ -1,3 +1,5 @@
+import 'dart:math';
+
 /**
  * Conceito - Map
  * - o Map é uma coleção dinamica e customizável de chaves e valores entre {}
@@ -65,6 +67,66 @@ linkedHashMap() {
   }
 }
 
+/**
+ * Conceito - Map
+ * - Map transforma /seleciona os elementos de uma coleção criando uma nova do mesmo tamanho
+ */
+
+mapMap() {
+  print('Map map\n');
+
+  List<Map<String, dynamic>> cart = [
+    {'name': 'Borracha', 'price': 3.45},
+    {'name': 'Caderno', 'price': 13.9},
+    {'name': 'Livro', 'price': 41.22},
+    {'name': 'Caneta', 'price': 7.5},
+  ];
+
+  // closure
+  Function percentage(discount) => (value) => discount * value['price'];
+
+  final coin = (e) => 'R\$ ${e.toDouble().toStringAsFixed(2).replaceFirst('.', ',')}';
+  List<String> prices1 = cart.map((e) => percentage(0.9)(e)).map(coin).toList(); //NOTE - closure
+  List<String> prices2 = cart.map((e) => e.update('price', (value) => value * 0.9)).map(coin).toList();
+  print('Lista de preços 1: $prices1');
+  print('Lista de preços 2: $prices2');
+
+  final double averagePrice = cart.map((e) => e['price']).reduce((p, c) => p += c) / cart.length;
+  print('Preço médio: ${averagePrice.toStringAsFixed(2)}\n');
+
+  List<Map<String, Object>> school = [
+    {
+      'name': 'Turma T1',
+      'students': [
+        {'name': 'Rodrigo', 'grade': 8.1},
+        {'name': 'Felipe', 'grade': 9.3},
+      ]
+    },
+    {
+      'name': 'Turma T2',
+      'students': [
+        {'name': 'João', 'grade': 8.9},
+        {'name': 'Souza', 'grade': 7.3},
+      ]
+    },
+  ];
+
+  // List<dynamic> studentsSchool =
+  //     school.map((e) => e['students'] as List).expand((e) => e).map((e) => e['grade']).toList();
+
+  List<dynamic> studentsSchool = school.map((e) => e['students'] as List).expand((e) => e).toList();
+  print('Lista ordenada: $studentsSchool');
+
+  studentsSchool.sort((b, a) => b['grade'].compareTo(a['grade']));
+  print('Lista ordenada: $studentsSchool');
+
+  double averageGrade = studentsSchool.map((e) => e['grade']).reduce((p, c) => p + c) / studentsSchool.length;
+  print('Media as notas: ${averageGrade.toStringAsFixed(1)}\n');
+
+  studentsSchool.forEach((e) => print('${e['name']}: ${e['grade']}'));
+}
+
 main() {
   linkedHashMap();
+  mapMap();
 }
