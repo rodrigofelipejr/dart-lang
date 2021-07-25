@@ -190,9 +190,60 @@ whereMap() {
   print('Average: ${average.toStringAsFixed(0)}');
 }
 
+/**
+ * Conceito - Reduce
+ * - O reduce compara os elementos da coleção, retornando um único elemento resultante
+ * - Ao interagis coom os elementos o indice 0 se torna o anterior, e o indice 1 se torna o atual.
+ */
+
+reduceMap() {
+  print('Map - Reduce\n');
+
+  List<Map<String, dynamic>> students = [
+    {'name': 'Rodrigo', 'grade': 7.3, 'scholarship': false},
+    {'name': 'Felipe', 'grade': 9.2, 'scholarship': true},
+    {'name': 'Silva', 'grade': 9.8, 'scholarship': true},
+    {'name': 'Jonas', 'grade': 8.7, 'scholarship': false},
+  ];
+
+  final bool Function(Map<String, dynamic>) scholarship = (e) => e['scholarship'] as bool;
+  final Function(Map<String, dynamic>) names = (e) => e['name'];
+  final Function(Map<String, dynamic>) grade = (e) => e['grade'];
+  final Function(dynamic, dynamic) sum = (p, c) => p + c;
+
+  List<dynamic> scholarshipHolders = students.where(scholarship).map(names).toList();
+  List<Map<String, dynamic>> average = students.where(scholarship).toList();
+  var scholarshipHoldersAverage = average.map(grade).reduce(sum) / average.length;
+  bool allScholarshipHolders = students.map(scholarship).reduce((p, c) => p && c);
+  bool someoneScholarship = students.map(scholarship).reduce((p, c) => p || c);
+
+  print('Todos são bolsistas? ${allScholarshipHolders ? 'Sim' : 'Não'}');
+  print('Algum bolsista? ${someoneScholarship ? 'Sim' : 'Não'}');
+  print('Alunos bolsistas: $scholarshipHolders - Médias notas: $scholarshipHoldersAverage');
+
+  List<Map> employees = [
+    {'name': 'Laura', 'gender': 'F', 'country': 'Brasil', 'wage': 1599.70},
+    {'name': 'Fernando', 'gender': 'M', 'country': 'Argentina', 'wage': 1234.36},
+    {'name': 'Claudia', 'gender': 'F', 'country': 'Brasil', 'wage': 1730.30},
+  ];
+
+  final bool Function(Map<dynamic, dynamic>) brazilians = (e) => e['country'] == 'Brasil';
+  final bool Function(Map<dynamic, dynamic>) females = (e) => e['gender'] == 'F';
+  final Map<dynamic, dynamic> Function(dynamic, dynamic) lowestSalary = (p, c) => p['wage'] < c['wage'] ? p : c;
+  final Map<dynamic, dynamic> Function(dynamic, dynamic) employeeLowestSalary = (p, c) => p['wage'] < c['wage'] ? p : c;
+
+  List<Map<dynamic, dynamic>> selected = employees.where(brazilians).where(females).toList();
+  print('Selected: $selected');
+  print(selected.reduce(lowestSalary)['wage']);
+
+  Map<dynamic, dynamic> employee = selected.reduce(employeeLowestSalary);
+  print('Employees: ${employee['name']} - Wage: ${employee['wage']}');
+}
+
 main() {
   linkedHashMap();
   mapMap();
   everyMap();
   whereMap();
+  reduceMap();
 }
