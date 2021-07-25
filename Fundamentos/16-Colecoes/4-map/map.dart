@@ -5,12 +5,12 @@
  */
 
 linkedHashMap() {
-  print('LikedHashMap == Map\n');
+  print('Map - LikedHashMap == Map\n');
 
   List<String> names = ['Rodrigo', 'Felipe'];
   Map<int, String> namesMap = names.asMap();
 
-  print('\n$namesMap');
+  print('$namesMap');
 
   namesMap.forEach((key, value) => print('key: $key - value: $value'));
 
@@ -63,6 +63,7 @@ linkedHashMap() {
     final value = numbers[key];
     print('forIn: key: $key - value: ${value!.toUpperCase()}');
   }
+  print('');
 }
 
 /**
@@ -71,7 +72,7 @@ linkedHashMap() {
  */
 
 mapMap() {
-  print('Map map\n');
+  print('Map - Map\n');
 
   List<Map<String, dynamic>> cart = [
     {'name': 'Borracha', 'price': 3.45},
@@ -144,11 +145,54 @@ everyMap() {
   print(people.every((e) => e['age'] > 17));
 
   bool maiores = people.every((e) => e['name']!.toString().startsWith('L'));
-  print(maiores);
+  print('$maiores\n');
+}
+
+/**
+ * Conceito - Where
+ * - O Where filtra os elementos da coleção, criando uma nova do mesmo tamanho ou coleção menor
+ */
+
+whereMap() {
+  print('Map - Where\n');
+
+  List<Map<dynamic, dynamic>> products = [
+    {'name': 'Notebook', 'price': 2499, 'fragile': true},
+    {'name': 'iPad', 'price': 4199, 'fragile': true},
+    {'name': 'iPhone', 'price': 2299, 'fragile': true},
+    {'name': 'Magic mouse', 'price': 299, 'fragile': false}
+  ];
+
+  final fragile = (e) => e['fragile'] == true;
+  final name = (e) => e['name'];
+
+  List<dynamic> result = products.where(fragile).map(name).toList();
+  print(result);
+
+  List<Map<String, dynamic>> people = [
+    {'name': 'Rodrigo', 'age': 37},
+    {'name': 'Felipe', 'age': 31},
+    {'name': 'Roger', 'age': 17},
+  ];
+
+  List<Map<String, dynamic>> maiores = people.where((e) => e['age'] >= 21).toList();
+  print('Maiores: $maiores');
+
+  Map<String, dynamic> startR = people.firstWhere((e) => e['name'].toString().startsWith('R'), orElse: () => {});
+  print('Inicia com R: $startR');
+
+  Map<String, dynamic> menores = people.singleWhere((e) => e['age'] < 18);
+  print('Menores: $menores');
+
+  final Function(Map<String, dynamic>) ages = (e) => e['age'];
+  final Function(dynamic, dynamic) sum = (p, c) => p + c;
+  final average = people.map(ages).reduce(sum) / people.length;
+  print('Average: ${average.toStringAsFixed(0)}');
 }
 
 main() {
   linkedHashMap();
   mapMap();
   everyMap();
+  whereMap();
 }
