@@ -51,7 +51,7 @@ listForEach() {
   print('');
 
   // List<dynamic> lista = List.generate(2, (index) => 'a-$index');
-  List<dynamic?> lista = List.filled(2, null);
+  List<dynamic> lista = List.filled(2, null);
   lista = numeros.take(3).toList();
   print('lista: $lista');
 

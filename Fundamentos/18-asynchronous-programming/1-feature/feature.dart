@@ -18,12 +18,12 @@ String task([int time = 1]) {
   return 'Status $msg';
 }
 
-void newTask([int time = 1]) {
-  Future.delayed(Duration(seconds: time), () => print("Primeira tarefa finalizada!\n"));
-}
-
 Future<String> status({int time = 1}) {
   return Future.delayed(Duration(seconds: time), () => "Segunda tarefa finalizada!\n");
+}
+
+void newTask([int time = 1]) {
+  Future.delayed(Duration(seconds: time), () => print("Primeira tarefa finalizada!\n"));
 }
 
 void exceptionTask([int time = 1]) =>
